@@ -19,7 +19,8 @@
 
             const foodName = document.getElementById("foodName").value;
             // const url = `http://ec2-43-203-204-195.ap-northeast-2.compute.amazonaws.com/n11/food?name=${encodeURIComponent(foodName)}`; 
-            const url = `http://localhost:1234/n11/food?name=${encodeURIComponent(foodName)}`;
+            // const url = `http://localhost:1234/n11/food?name=${encodeURIComponent(foodName)}`;
+            const url = `https://api.samdulshop.shop/n11/food?name=${encodeURIComponent(foodName)}`;
 
             fetch(url, {
                 method: 'GET',

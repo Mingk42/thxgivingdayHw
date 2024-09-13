@@ -9,11 +9,13 @@ app = FastAPI()
 
 origins = [
     "http://localhost",
+    "https://samdul11food.web.app",
 ]
 
 app.add_middleware(
     CORSMiddleware,
     # allow_origin_regex=f"http://localhost[:\d]*",
+    allow_origins=origins,
     allow_origin_regex=f"{origins[0]}[:\d]*",
     allow_credentials=True,
     allow_methods=["*"],
