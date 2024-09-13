@@ -3,18 +3,18 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 import os
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
 app = FastAPI()
 
 origins = [
     "http://localhost",
-    "http://localhost:8080",
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    # allow_origin_regex=f"http://localhost[:\d]*",
+    allow_origin_regex=f"{origins[0]}[:\d]*",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
