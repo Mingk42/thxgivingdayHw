@@ -1,10 +1,24 @@
 from typing import Union
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 import os
 from datetime import datetime
 
 app = FastAPI()
+
+origins = [
+    "http://localhost",
+    "http://localhost:8080",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 def idx():
@@ -25,11 +39,12 @@ def food(name:str):
     save_path=f"{os.path.dirname(os.path.abspath(__file__))}/data"
 
     os.makedirs(save_path,exist_ok=True)
-
-    dt=datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    
+    KST = timezone(timedelta(hours=9))
+    dt=datetime.now(KST).strftime('%Y-%m-%d %H:%M:%S')
 
     with open(f"{save_path}/food.csv","a") as f:
-        f.write(f"{name},{dt}\n")
+        f.write(f"{dt},{name}\n")
 
     return {
             "food":name, 
