@@ -1,7 +1,7 @@
 [project]
 name = "samdul11food"
-version = "0.1.0"
-description = "Default template for PDM package"
+version = "0.2.0"
+description = "음식 이름 저장기"
 authors = [
     {name = "Mingk42", email = "xoals123456t@gmail.com"},
 ]
