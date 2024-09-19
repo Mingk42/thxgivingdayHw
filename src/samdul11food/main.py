@@ -48,6 +48,54 @@ def food(name:str):
     with open(f"{save_path}/food.csv","a") as f:
         f.write(f"{dt},{name}\n")
 
+    ##################################################################
+    import pymysql.cursors
+
+    # Connect to the database
+    connection = pymysql.connect(host='localhost',
+                                user='food',
+                                password='1234',
+                                database='fooddb',
+                                port=13306,
+                                cursorclass=pymysql.cursors.DictCursor)
+
+    with connection:
+        # with connection.cursor() as cursor:
+        #     # Create a new record
+        #     sql = """
+        #     create or replace table foodhistory (
+        #         num INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	    #         username varchar(100) NULL COMMENT '입력자 n01, n02 ....',
+	    #         foodname varchar(100) NULL COMMENT '음식이름',
+	    #         dt varchar(100) NULL COMMENT '입력시간 예: 2024-09-15 11:12:13'
+        #     )
+        #     """
+        #     cursor.execute(sql)
+
+        # connection is not autocommit by default. So you must commit to save
+        # your changes.
+        # connection.commit()
+
+        with connection.cursor() as cursor:
+            # Read a single record
+            # sql = "SELECT `id`, `password` FROM `users` WHERE `email`=%s"
+            # cursor.execute(sql, ('webmaster@python.org',))
+            sql = "INSERT INTO `foodhistory`(username, foodname, dt) VALUES (%s, %s, %s)"
+            cursor.execute(sql,("n11",name,dt))
+            result = cursor.fetchone()
+            print(result)
+        connection.commit()
+
+        #with connection.cursor() as cursor:
+            # Read a single record
+            # sql = "SELECT `id`, `password` FROM `users` WHERE `email`=%s"
+            # cursor.execute(sql, ('webmaster@python.org',))
+        #    sql = "SELECT * FROM `foodhistory`"
+        #    cursor.execute(sql)
+        #    result = cursor.fetchone()
+        #    print(result)
+    ##################################################################
+
     return {
             "food":name, 
             "time":dt
