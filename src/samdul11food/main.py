@@ -52,11 +52,11 @@ def food(name:str):
     import pymysql.cursors
 
     # Connect to the database
-    connection = pymysql.connect(host='localhost',
+    connection = pymysql.connect(host=os.getenv("DB_IP","localhost"),
                                 user='food',
                                 password='1234',
                                 database='fooddb',
-                                port=13306,
+                                port=os.getenv("DB_PORT","13306"),
                                 cursorclass=pymysql.cursors.DictCursor)
 
     with connection:

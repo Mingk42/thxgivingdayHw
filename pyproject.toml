@@ -1,6 +1,6 @@
 [project]
 name = "samdul11food"
-version = "0.2.16"
+version = "0.2.17"
 description = "음식 이름 저장기"
 authors = [
     {name = "Mingk42", email = "xoals123456t@gmail.com"},
