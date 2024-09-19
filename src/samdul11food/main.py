@@ -56,7 +56,7 @@ def food(name:str):
                                 user='food',
                                 password='1234',
                                 database='fooddb',
-                                port=os.getenv("DB_PORT","13306"),
+                                port=int(os.getenv("DB_PORT","13306")),
                                 cursorclass=pymysql.cursors.DictCursor)
 
     with connection:
