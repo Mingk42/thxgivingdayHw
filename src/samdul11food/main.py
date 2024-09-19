@@ -82,6 +82,10 @@ def food(name:str):
             # cursor.execute(sql, ('webmaster@python.org',))
             sql = "INSERT INTO `foodhistory`(username, foodname, dt) VALUES (%s, %s, %s)"
             cursor.execute(sql,("n11",name,dt))
+
+            sql = "SELECT * FROM `foodhistory` ORDER BY num DESC LIMIT 1"
+            cursor.execute(sql,)
+            
             result = cursor.fetchone()
             print(result)
         connection.commit()
